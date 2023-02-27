@@ -1,0 +1,10 @@
+node_modules
+dist
+build
+interact.js
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+.env
+.idea
