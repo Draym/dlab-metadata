@@ -1,5 +1,5 @@
 import {Model as SeqModel, DataTypes, Sequelize, Optional} from "sequelize"
-import {Token, Metadata} from "../interfaces"
+import {Token, MetadataToken} from "../interfaces"
 import {Blockchain} from "../enums"
 
 export type TokenCreationAttributes = Optional<Token, "id" | "createdAt" | "updatedAt">
@@ -11,7 +11,7 @@ export default class TokenModel extends SeqModel<Token, TokenCreationAttributes>
     public modelId: number
     public assetId: number
     public tokenId: string
-    public metadata: Metadata
+    public metadata: MetadataToken
     public createdAt: Date
     public updatedAt: Date
 }

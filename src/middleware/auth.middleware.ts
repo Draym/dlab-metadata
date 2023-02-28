@@ -1,26 +1,21 @@
 import {NextFunction, Request, RequestHandler, Response} from "express"
 import sso from "../clients/sso.client"
-import {Auth, authEmpty, UserResponse} from "@d-lab/sso"
-import {AuthData, CallerData, Errors, isNotNull, logger, throwIfNull} from "@d-lab/api-kit"
+import {AuthRawData, isNotNull, logger, throwIfNull} from "@d-lab/api-kit"
+import {AuthMeResponse, Errors} from "@d-lab/sso"
 
 declare global {
     namespace Express {
         interface Request {
-            auth?: AuthData | undefined
-            user?: CallerData | undefined
+            auth?: AuthRawData | undefined
+            caller?: AuthMeResponse | undefined
         }
     }
 }
 
 export const authMiddleware = (): RequestHandler => {
 
-    async function verifyJWT(Authorization: string): Promise<CallerData> {
-        const me: UserResponse = await sso.auth.getMe(authEmpty(Auth.token(Authorization)))
-        return {
-            id: me.id,
-            identifier: me.identifier,
-            email: me.email
-        }
+    async function verifyJWT(Authorization: string): Promise<AuthMeResponse> {
+       return await sso.auth.me(Authorization)
     }
 
     return async <R extends Request>(req: R, res: Response, next: NextFunction) => {
@@ -34,7 +29,7 @@ export const authMiddleware = (): RequestHandler => {
                     token: bearerToken!,
                     apiKey : null
                 }
-                req.user = user
+                req.caller = user
             }
             if (isNotNull(apiKey)) {
                 req.auth = {

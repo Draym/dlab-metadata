@@ -1,8 +1,7 @@
 import {RequestHandler} from "express"
-import {Auth, authQuery, Role} from "@d-lab/sso"
+import {Errors, Role} from "@d-lab/sso"
 import sso from "../clients/sso.client"
-import {ssoConfig} from "../config"
-import {Errors, logger, throwIfNull} from "@d-lab/api-kit"
+import {Auth, logger, throwIfNull} from "@d-lab/api-kit"
 
 export const hasRole = (role: Role, strict: boolean = false): RequestHandler => {
     return async (req, res, next) => {
@@ -11,10 +10,10 @@ export const hasRole = (role: Role, strict: boolean = false): RequestHandler => 
 
             throwIfNull(auth?.token, Errors.REQUIRE_Token())
 
-            const isAllowed = await sso.application.isUserAllowed(authQuery({
+            const isAllowed = await sso.application.isUserAllowed({
                 strict: strict ? "true" : "false",
                 requiredRole: role
-            }, Auth.full(auth!.token!, ssoConfig.APP_KEY)))
+            }, Auth.token(auth!.token!))
 
             if (isAllowed.allowed) {
                 next()

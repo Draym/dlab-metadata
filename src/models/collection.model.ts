@@ -1,8 +1,6 @@
 import {Model, DataTypes, Sequelize, Optional} from "sequelize"
-import {Collection} from "../interfaces"
+import {Collection, MetadataContract} from "../interfaces"
 import {Blockchain} from "../enums"
-import Metadata from "../interfaces/metadata.interface"
-
 export type CollectionCreationAttributes = Optional<Collection, "id" | "createdAt" | "updatedAt">
 
 export default class CollectionModel extends Model<Collection, CollectionCreationAttributes> implements Collection {
@@ -10,7 +8,7 @@ export default class CollectionModel extends Model<Collection, CollectionCreatio
     public chainId: Blockchain
     public address: string
     public name: string
-    metadata: Metadata
+    metadata: MetadataContract
     public createdAt: Date
     public updatedAt: Date
 }

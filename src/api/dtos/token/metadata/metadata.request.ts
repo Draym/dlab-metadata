@@ -9,6 +9,8 @@ export default class MetadataRequest {
     imageUrl: string
     @IsString()
     animationUrl: string
+    @IsString()
+    externalUrl: string
     @IsObject()
     properties: { [key: string]: string | number | boolean | Date }
 }

@@ -3,9 +3,9 @@ import ModelController from "../controllers/model.controller"
 import Endpoint from "../enums/endpoint.enum"
 import authMiddleware from "../middleware/auth.middleware"
 import hasRole from "../middleware/has-role.middleware"
-import {Role} from "@d-lab/sso"
 import {handle, validatePathRequest, validateQueryRequest, validateRequest} from "@d-lab/api-kit"
 import {CreateRequest, GetRequest, ListRequest, UpdateBodyRequest, UpdatePathRequest} from "../api/dtos/model"
+import {Role} from "@d-lab/sso"
 
 const router = Router()
 const ctrl = new ModelController()

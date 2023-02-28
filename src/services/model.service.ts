@@ -1,13 +1,13 @@
 import {Filter, merge, Page, throwIfNull} from "@d-lab/api-kit"
 import db from "../db/database"
-import {Metadata, Model, PartialMetadata} from "../interfaces"
+import {MetadataToken, Model, MetadataTokenOpt} from "../interfaces"
 import {ModelModel} from "../models"
 import Errors from "../utils/errors/Errors"
 import {Blockchain} from "../enums"
 
 class ModelService {
 
-    async create(chainId: Blockchain, collectionAddress: string, modelId: number, metadata: Metadata): Promise<ModelModel> {
+    async create(chainId: Blockchain, collectionAddress: string, modelId: number, metadata: MetadataToken): Promise<ModelModel> {
         return await db.Models.create({
             chainId: chainId,
             collectionAddress: collectionAddress,
@@ -16,7 +16,7 @@ class ModelService {
         })
     }
 
-    async update(id: number, partialMetadata: PartialMetadata): Promise<ModelModel> {
+    async update(id: number, partialMetadata: MetadataTokenOpt): Promise<ModelModel> {
         const model = await this.getById(id)
         const metadata = merge(model.metadata, partialMetadata)
         await model.update({

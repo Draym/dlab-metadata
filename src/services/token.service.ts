@@ -1,6 +1,6 @@
 import {Filter, isNull, merge, Page, throwIfNull, toInt} from "@d-lab/api-kit"
 import db from "../db/database"
-import {Metadata, PartialMetadata, Token} from "../interfaces"
+import {MetadataToken, MetadataTokenOpt, Token} from "../interfaces"
 import {TokenModel} from "../models"
 import {TokenId} from "../utils/decoder"
 import Errors from "../utils/errors/Errors"
@@ -9,7 +9,7 @@ import {Blockchain} from "../enums"
 
 class TokenService {
 
-    async create(chainId: Blockchain, collectionAddress: string, tokenId: string, metadata: Metadata): Promise<TokenModel> {
+    async create(chainId: Blockchain, collectionAddress: string, tokenId: string, metadata: MetadataToken): Promise<TokenModel> {
         const ids = TokenId.decode(tokenId)
 
         return await db.Tokens.create({
@@ -22,7 +22,7 @@ class TokenService {
         })
     }
 
-    async updateMetadata(chainId: Blockchain, collectionAddress: string, tokenId: string, partialMetadata: PartialMetadata): Promise<TokenModel> {
+    async updateMetadata(chainId: Blockchain, collectionAddress: string, tokenId: string, partialMetadata: MetadataTokenOpt): Promise<TokenModel> {
         const token = await this.find(chainId, collectionAddress, tokenId)
 
         if (isNull(token)) {

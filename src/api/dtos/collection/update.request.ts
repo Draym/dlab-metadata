@@ -1,9 +1,9 @@
-import {IsEnum, IsNumberString, IsString} from "class-validator"
-import {Blockchain} from "../../../enums"
+import {IsNumberString, IsObject} from "class-validator"
+import {PartialMetadataRequest} from "./metadata"
 
 export class UpdateBodyRequest {
-    @IsString()
-    name: string
+    @IsObject()
+    metadata: PartialMetadataRequest
 }
 
 export class UpdatePathRequest {

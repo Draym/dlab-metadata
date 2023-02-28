@@ -1,24 +1,26 @@
-import {Filter, Page, throwIfNull} from "@d-lab/api-kit"
+import {Filter, merge, Page, throwIfNull} from "@d-lab/api-kit"
 import db from "../db/database"
-import {Collection} from "../interfaces"
+import {Collection, MetadataContract, MetadataContractOpt} from "../interfaces"
 import {CollectionModel} from "../models"
 import Errors from "../utils/errors/Errors"
 import {Blockchain} from "../enums"
 
 class CollectionService {
 
-    async create(chainId: Blockchain, address: string, name: string): Promise<CollectionModel> {
+    async create(chainId: Blockchain, address: string, metadata: MetadataContract): Promise<CollectionModel> {
         return await db.Collections.create({
             chainId: chainId,
-            name: name,
-            address: address
+            name: metadata.name,
+            address: address,
+            metadata: metadata
         })
     }
 
-    async update(id: number, name: string): Promise<CollectionModel> {
+    async update(id: number, partialMetadata: MetadataContractOpt): Promise<CollectionModel> {
         const collection = await this.getById(id)
         await collection.update({
-            name: name
+            name: partialMetadata.name,
+            metadata: merge(collection.metadata, partialMetadata)
         })
         return collection
     }

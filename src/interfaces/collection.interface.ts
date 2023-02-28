@@ -1,12 +1,12 @@
 import {Blockchain} from "../enums"
-import Metadata from "./metadata.interface"
+import MetadataContract from "./metadata-contract.interface"
 
 export default interface Collection {
     id: number
     chainId: Blockchain
     address: string
     name: string
-    metadata: Metadata
+    metadata: MetadataContract
     createdAt: Date
     updatedAt: Date
 }

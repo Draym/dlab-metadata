@@ -1,10 +1,10 @@
-import {Metadata} from "../../interfaces"
+import {MetadataToken} from "../../interfaces"
 import Blockchain from "../../enums/blockchain.enum"
 import {isDate, isNumber} from "@d-lab/api-kit"
 import {MetadataEthDto, MetadataImxDto} from "../../api/dtos/token/metadata"
 export default class NftMetadata {
 
-    static for(chainId: Blockchain, metadata: Metadata): MetadataEthDto | MetadataImxDto {
+    static for(chainId: Blockchain, metadata: MetadataToken): MetadataEthDto | MetadataImxDto {
         switch (chainId) {
             case Blockchain.ETHEREUM:
                 return this.forEthereum(metadata)
@@ -15,7 +15,7 @@ export default class NftMetadata {
         }
     }
 
-    private static forEthereum(metadata: Metadata): MetadataEthDto {
+    private static forEthereum(metadata: MetadataToken): MetadataEthDto {
         return {
             name: metadata.name,
             description: metadata.description,
@@ -46,7 +46,7 @@ export default class NftMetadata {
         }
     }
 
-    private static forIMX(metadata: Metadata): MetadataImxDto {
+    private static forIMX(metadata: MetadataToken): MetadataImxDto {
         return {
             name: metadata.name,
             description: metadata.description,

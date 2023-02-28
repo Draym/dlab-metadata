@@ -1,12 +1,12 @@
 import {Blockchain} from "../../../enums"
-import Metadata from "../../../interfaces/metadata.interface"
+import {MetadataDto} from "../token/metadata"
 
 export default class ModelDto {
     id: number
     chainId: Blockchain
     collectionAddress: string
     modelId: number
-    metadata: Metadata
+    metadata: MetadataDto
     createdAt: Date
     updatedAt: Date
 }

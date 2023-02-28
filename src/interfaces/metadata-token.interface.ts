@@ -1,4 +1,4 @@
-export default interface Metadata {
+export default interface MetadataToken {
     name: string
     description: string
     externalUrl: string

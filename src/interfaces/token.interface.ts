@@ -1,4 +1,4 @@
-import Metadata from "./metadata.interface"
+import MetadataToken from "./metadata-token.interface"
 import {Blockchain} from "../enums"
 
 export default interface Token {
@@ -8,7 +8,7 @@ export default interface Token {
     modelId: number
     assetId: number
     tokenId: string
-    metadata: Metadata
+    metadata: MetadataToken
     createdAt: Date
     updatedAt: Date
 }

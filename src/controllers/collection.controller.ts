@@ -9,11 +9,13 @@ import {
     UpdateBodyRequest, UpdatePathRequest
 } from "../api/dtos/collection"
 import collectionService from "../services/collection.service"
+import {GetRequest as MetadataGetRequest,MetadataEthDto} from "../api/dtos/collection/metadata"
+import ContractMetadata from "../utils/metadata/contract-metadata"
 
 export default class CollectionController implements CollectionApi {
     async create(req: AuthBodyRequest<CreateRequest>): Promise<CollectionResponse> {
         const payload = req.body
-        const collection = await collectionService.create(payload.chainId, payload.address, payload.name)
+        const collection = await collectionService.create(payload.chainId, payload.address, payload.metadata)
         return {collection}
     }
 
@@ -38,8 +40,14 @@ export default class CollectionController implements CollectionApi {
     async update(req: AuthBodyPathRequest<UpdateBodyRequest, UpdatePathRequest>): Promise<CollectionResponse> {
         const payload = req.body
         const params = req.params
-        const collection = await collectionService.update(Number.parseInt(params.id), payload.name)
+        const collection = await collectionService.update(Number.parseInt(params.id), payload.metadata)
         return {collection}
+    }
+
+    async metadataGet(req: PathRequest<MetadataGetRequest>): Promise<MetadataEthDto> {
+        const params = req.params
+        const collection = await collectionService.get(params.chainId, params.collectionAddress)
+        return ContractMetadata.for(params.chainId, collection.metadata)
     }
 
 }
