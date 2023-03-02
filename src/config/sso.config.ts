@@ -1,7 +1,8 @@
 import 'dotenv/config'
 
 const ssoConfig = {
-    APP_KEY: process.env.APP_KEY!
+    SSO_ENDPOINT: process.env.SSO_ENDPOINT!,
+    SSO_API_KEY: process.env.SSO_API_KEY!
 };
 
 export default ssoConfig
