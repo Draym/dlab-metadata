@@ -11,7 +11,7 @@
     "dev": "cross-env NODE_ENV=development npm run db:migrate && NODE_ENV=development TS_NODE=true NODE_OPTIONS='-r ts-node/register' nodemon",
     "quick-dev": "NODE_ENV=development TS_NODE=true NODE_OPTIONS='-r ts-node/register' nodemon",
     "build": "tsc",
-    "test": "jest"
+    "test": "jest --passWithNoTests"
   },
   "dependencies": {
     "@babel/plugin-transform-runtime": "^7.15.8",
