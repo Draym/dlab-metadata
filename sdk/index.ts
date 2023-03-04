@@ -17,4 +17,4 @@ export {
 }
 
 export * from "../src/enums/blockchain.enum"
-export * from "../src/api/dtos/token"
+export * from "../src/api/dtos/token/metadata"
