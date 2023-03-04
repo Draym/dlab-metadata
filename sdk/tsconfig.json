@@ -23,18 +23,8 @@
     "importHelpers": true,
     "skipLibCheck": true,
     "baseUrl": ".",
-    "paths": {
-      "@/dtos/*": [
-        "../src/api/dtos/*"
-      ],
-      "@/enums/*": [
-        "../src/enums/*"
-      ]
-    }
   },
   "include": [
-    "../src/api/dtos/**/*.ts",
-    "../src/enums/*.ts",
     "./src/**/*.ts",
     "./index.ts"
   ],

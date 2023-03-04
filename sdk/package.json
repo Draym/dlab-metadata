@@ -1,6 +1,6 @@
 {
   "name": "@d-lab/metadata",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "description": "Client library for DLab Metadata apis",
   "private": false,
   "keywords": [
@@ -14,8 +14,8 @@
   },
   "homepage": "https://github.com/Draym/dlab-metadata#readme",
   "license": "MIT",
-  "main": "dist/sdk/index.js",
-  "types": "dist/sdk/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": "https://github.com/Draym/dlab-metadata/tree/main",
   "sideEffects": false,
   "files": [

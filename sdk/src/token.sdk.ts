@@ -1,13 +1,13 @@
 import Sdk from "./sdk"
 import {Auth, Http} from "@d-lab/api-kit"
-import Endpoint from "@/enums/endpoint.enum"
 import {
     GetRequest as MetadataGetRequest, MetadataDto,
+    MetadataEthDto,
     MetadataImxDto,
     UpdateBodyRequest as MetadataUpdateBodyRequest,
     UpdatePathRequest as MetadataUpdatePathRequest
-} from "@/dtos/token/metadata"
-import MetadataEthDto from "../../src/api/dtos/token/metadata/metadata-eth.dto"
+} from "./api/dtos/token/metadata"
+import {Endpoint} from "./enums"
 
 export default class TokenSdk extends Sdk {
     private readonly apiKey?: string

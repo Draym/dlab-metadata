@@ -1,5 +1,4 @@
 import TokenSdk from "./src/token.sdk"
-import Errors from "./src/utils/Errors"
 
 class Client {
     private readonly domain: string
@@ -13,8 +12,7 @@ class Client {
 
 export {
     Client,
-    Errors
 }
 
-export * from "../src/enums/blockchain.enum"
-export * from "../src/api/dtos/token/metadata"
+export * from "./src/enums"
+export * from "./src/api/dtos/token/metadata"
