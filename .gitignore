@@ -8,3 +8,4 @@ interact.js
 !.elasticbeanstalk/*.global.yml
 .env
 .idea
+.npmrc

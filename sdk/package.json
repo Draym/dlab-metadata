@@ -1,0 +1,37 @@
+{
+  "name": "@d-lab/metadata",
+  "version": "0.1.0",
+  "description": "Client library for DLab Metadata apis",
+  "private": false,
+  "keywords": [
+    "dlab",
+    "sdk",
+    "metadata"
+  ],
+  "author": {
+    "name": "Kevin Andres",
+    "email": "kevin.draym@gmail.com"
+  },
+  "homepage": "https://github.com/Draym/dlab-metadata#readme",
+  "license": "MIT",
+  "main": "dist/sdk/index.js",
+  "types": "dist/sdk/index.d.ts",
+  "repository": "https://github.com/Draym/dlab-metadata/tree/main",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "bugs": {
+    "url": "https://github.com/Draym/dlab-metadata/issues"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@d-lab/api-kit": "^0.2.6",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.13.2",
+    "reflect-metadata": "^0.1.13",
+    "tslib": "^2.4.0"
+  }
+}
