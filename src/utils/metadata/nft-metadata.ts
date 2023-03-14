@@ -1,23 +1,23 @@
 import {MetadataToken} from "../../interfaces"
 import Blockchain from "../../enums/blockchain.enum"
-import {isDate, isNumber} from "@d-lab/api-kit"
+import {isDate, isNotNull, isNumber} from "@d-lab/api-kit"
 import {MetadataEthDto, MetadataImxDto} from "../../api/dtos/token/metadata"
 export default class NftMetadata {
 
-    static for(chainId: Blockchain, metadata: MetadataToken): MetadataEthDto | MetadataImxDto {
+    static for(chainId: Blockchain, metadata: MetadataToken, tokenId?: string): MetadataEthDto | MetadataImxDto {
         switch (chainId) {
             case Blockchain.ETHEREUM:
-                return this.forEthereum(metadata)
+                return this.forEthereum(metadata, tokenId)
             case Blockchain.IMX:
                 return this.forIMX(metadata)
             default:
-                return this.forEthereum(metadata)
+                return this.forEthereum(metadata, tokenId)
         }
     }
 
-    private static forEthereum(metadata: MetadataToken): MetadataEthDto {
+    private static forEthereum(metadata: MetadataToken, tokenId?: string): MetadataEthDto {
         return {
-            name: metadata.name,
+            name: isNotNull(tokenId) ? `${metadata.name} #${tokenId}` : metadata.name,
             description: metadata.description,
             image: metadata.imageUrl,
             animation_url: metadata.animationUrl,

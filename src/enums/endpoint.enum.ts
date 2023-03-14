@@ -13,7 +13,7 @@ enum Endpoint {
 
     TOKEN_List = "/tokens",
     TOKEN_Get = "/tokens/:id",
-    TOKEN_METADATA_Update = "/metadata/:chainId/:collectionA/:tokenId",
+    TOKEN_METADATA_Update = "/metadata/:chainId/:collection/:tokenId",
     TOKEN_METADATA_Get = "/metadata/:chainId/:collection/:tokenId",
     COLLECTION_METADATA_Get = "/metadata/:chainId/:collection",
 }

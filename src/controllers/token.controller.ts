@@ -49,7 +49,7 @@ export default class TokenController implements TokenApi {
         }
         const ids = TokenId.decode(params.tokenId)
         const model = await modelService.getBy(params.chainId, collectionAddress, Number.parseInt(ids.modelId.toString()))
-        return NftMetadata.for(params.chainId, model.metadata)
+        return NftMetadata.for(params.chainId, model.metadata, params.tokenId)
     }
 
     async metadataUpdate(req: AuthBodyPathRequest<UpdateBodyRequest, UpdatePathRequest>): Promise<MetadataDto> {
