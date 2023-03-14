@@ -7,7 +7,6 @@ import helmet from "helmet"
 import routers from "./routes"
 import {errorMiddleware} from "@d-lab/api-kit"
 
-
 const app: Express = express()
 
 app.use(morgan("combined"))
@@ -22,17 +21,11 @@ app.use(
     }),
 )
 
-app.get("/", (_, res) => res.json("DLab Metadata Service OK"))
-app.get("/version", (_, res) => res.json({version: process.env.npm_package_version}))
+app.get("/api", (_, res) => res.json("DLab Metadata Service OK"))
+app.get("/api/version", (_, res) => res.json({version: process.env.npm_package_version}))
 
-routers.map(router => app.use(router))
+routers.map(router => app.use('/api', router))
 
-// The error handler must be before any other error middleware and after all controllers
-// app.use(Sentry.Handlers.errorHandler({
-//     shouldHandleError(error) {
-//         return isNotNull(error.status) && error.status! >= 400
-//     }
-// }));
 app.use(errorMiddleware)
 
 module.exports = app
