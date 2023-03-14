@@ -23,12 +23,12 @@ class TokenService {
     }
 
     async updateMetadata(chainId: Blockchain, collectionAddress: string, tokenId: string, partialMetadata: Partial<MetadataToken>): Promise<TokenModel> {
-        const token = await this.find(chainId, collectionAddress, tokenId)
+        const token = await this.findBy(chainId, collectionAddress, tokenId)
 
         if (isNull(token)) {
             const ids = TokenId.decode(tokenId)
             const modelId = toInt(ids.modelId.toString())!
-            const model = await modelService.get(chainId, collectionAddress, modelId)
+            const model = await modelService.getBy(chainId, collectionAddress, modelId)
             const metadata = merge(model.metadata, partialMetadata)
             return this.create(chainId, collectionAddress, tokenId, metadata)
         } else {
@@ -40,24 +40,20 @@ class TokenService {
         }
     }
 
-    async find(chainId: Blockchain, collectionAddress: string, tokenId: string): Promise<TokenModel | null> {
+    async findBy(chainId: Blockchain, collectionAddress: string, tokenId: string): Promise<TokenModel | null> {
         const filter: Filter = new Filter()
         filter.equals({chainId, collectionAddress, tokenId})
         return db.Tokens.findOne(filter.get())
     }
 
-    async get(chainId: Blockchain, collectionAddress: string, tokenId: string): Promise<TokenModel> {
-        const token = await this.find(chainId, collectionAddress, tokenId)
+    async getBy(chainId: Blockchain, collectionAddress: string, tokenId: string): Promise<TokenModel> {
+        const token = await this.findBy(chainId, collectionAddress, tokenId)
         throwIfNull(token, Errors.NOT_FOUND_Token(`(${collectionAddress}, ${tokenId})`))
         return token!
     }
 
-    async all(): Promise<Token[]> {
-        return db.Tokens.findAll()
-    }
-
-    async findAll(filter: Filter, page: Page): Promise<Token[]> {
-        return db.Tokens.findAll(page.paginate(filter.get()))
+    async findAll(filter: Filter): Promise<Token[]> {
+        return db.Tokens.findAll(filter.get())
     }
 }
 

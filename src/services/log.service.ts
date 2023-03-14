@@ -15,8 +15,8 @@ class LogService {
         })
     }
 
-    async findAll(filter: Filter, page: Page): Promise<Log[]> {
-        return db.Logs.findAll(page.paginate(filter.get()))
+    async findAll(filter: Filter): Promise<Log[]> {
+        return db.Logs.findAll(filter.get())
     }
 }
 

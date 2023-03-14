@@ -9,7 +9,7 @@ export class UpdatePathRequest {
     @IsEnum(Blockchain)
     chainId: Blockchain
     @IsString()
-    collectionAddress: string
+    collection: string
     @IsString()
     tokenId: string
 }

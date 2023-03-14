@@ -12,7 +12,8 @@ export default class LogController implements LogApi {
         filter.like({message: params.message})
         filter.gt({createdAt: toOptDate(params.createdAfter)})
         filter.lt({createdAt: toOptDate(params.createdBefore)})
-        const logs = await logService.findAll(filter, page)
+        filter.paginate(page)
+        const logs = await logService.findAll(filter)
         return {
             logs,
             ...page.result(logs)

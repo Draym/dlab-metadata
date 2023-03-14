@@ -6,6 +6,7 @@ export type CollectionCreationAttributes = Optional<Collection, "id" | "createdA
 export default class CollectionModel extends Model<Collection, CollectionCreationAttributes> implements Collection {
     public id: number
     public chainId: Blockchain
+    public identifier: string
     public address: string
     public name: string
     metadata: MetadataContract
@@ -23,6 +24,10 @@ export const init = (sequelize: Sequelize): typeof CollectionModel => {
                 type: DataTypes.INTEGER,
             },
             chainId: {
+                allowNull: false,
+                type: DataTypes.STRING
+            },
+            identifier: {
                 allowNull: false,
                 type: DataTypes.STRING
             },

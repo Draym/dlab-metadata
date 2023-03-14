@@ -1,4 +1,4 @@
-import {Filter, merge, Page, throwIfNull} from "@d-lab/api-kit"
+import {Filter, merge, throwIfNull} from "@d-lab/api-kit"
 import db from "../db/database"
 import {Collection, MetadataContract} from "../interfaces"
 import {CollectionModel} from "../models"
@@ -7,52 +7,50 @@ import {Blockchain} from "../enums"
 
 class CollectionService {
 
-    async create(chainId: Blockchain, address: string, metadata: MetadataContract): Promise<CollectionModel> {
+    async create(chainId: Blockchain, identifier: string, address: string, metadata: MetadataContract): Promise<CollectionModel> {
         return await db.Collections.create({
             chainId: chainId,
+            identifier: identifier,
             name: metadata.name,
             address: address,
             metadata: metadata
         })
     }
 
-    async update(id: number, partialMetadata: Partial<MetadataContract>): Promise<CollectionModel> {
-        const collection = await this.getById(id)
+    async update(id: number, identifier: string, address: string, partialMetadata: Partial<MetadataContract>): Promise<CollectionModel> {
+        const collection = await this.get(id)
+        const metadata = merge(collection.metadata, partialMetadata)
         await collection.update({
-            name: partialMetadata.name,
-            metadata: merge(collection.metadata, partialMetadata)
+            identifier: identifier,
+            name: metadata.name,
+            address: address,
+            metadata: metadata
         })
         return collection
     }
 
-    async find(chainId: Blockchain, address: string): Promise<CollectionModel | null> {
-        const filter: Filter = new Filter()
-        filter.equals({address, chainId})
+    async findBy(filter: Filter): Promise<CollectionModel | null> {
         return db.Collections.findOne(filter.get())
     }
 
-    async findById(id: number): Promise<CollectionModel | null> {
+    async find(id: number): Promise<CollectionModel | null> {
         return db.Collections.findByPk(id)
     }
 
-    async get(chainId: Blockchain, address: string): Promise<CollectionModel> {
-        const collection = await this.find(chainId, address)
-        throwIfNull(collection, Errors.NOT_FOUND_Collection(`(${address})`))
+    async getBy(filter: Filter): Promise<CollectionModel> {
+        const collection = await this.findBy(filter)
+        throwIfNull(collection, Errors.NOT_FOUND_Collection(`(${filter.stringify()})`))
         return collection!
     }
 
-    async getById(id: number): Promise<CollectionModel> {
-        const collection = await this.findById(id)
+    async get(id: number): Promise<CollectionModel> {
+        const collection = await this.find(id)
         throwIfNull(collection, Errors.NOT_FOUND_Collection(`(${id})`))
         return collection!
     }
 
-    async all(): Promise<Collection[]> {
-        return db.Collections.findAll()
-    }
-
-    async findAll(filter: Filter, page: Page): Promise<Collection[]> {
-        return db.Collections.findAll(page.paginate(filter.get()))
+    async findAll(filter: Filter): Promise<Collection[]> {
+        return db.Collections.findAll(filter.get())
     }
 }
 

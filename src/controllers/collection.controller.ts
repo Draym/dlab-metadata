@@ -1,27 +1,28 @@
 import {CollectionApi} from "../api"
-import {AuthBodyPathRequest, AuthBodyRequest, Filter, Page, PathRequest, QueryRequest} from "@d-lab/api-kit"
+import {AuthBodyPathRequest, AuthBodyRequest, eq, Filter, Page, PathRequest, QueryRequest} from "@d-lab/api-kit"
 import {
     CollectionResponse,
     CollectionsResponse,
     CreateRequest,
     GetRequest,
     ListRequest,
-    UpdateBodyRequest, UpdatePathRequest
+    UpdateBodyRequest,
+    UpdatePathRequest
 } from "../api/dtos/collection"
 import collectionService from "../services/collection.service"
-import {GetRequest as MetadataGetRequest,MetadataEthDto} from "../api/dtos/collection/metadata"
+import {GetRequest as MetadataGetRequest, MetadataEthDto} from "../api/dtos/collection/metadata"
 import ContractMetadata from "../utils/metadata/contract-metadata"
 
 export default class CollectionController implements CollectionApi {
     async create(req: AuthBodyRequest<CreateRequest>): Promise<CollectionResponse> {
         const payload = req.body
-        const collection = await collectionService.create(payload.chainId, payload.address, payload.metadata)
+        const collection = await collectionService.create(payload.chainId, payload.identifier, payload.address, payload.metadata)
         return {collection}
     }
 
     async get(req: PathRequest<GetRequest>): Promise<CollectionResponse> {
         const params = req.params
-        const collection = await collectionService.getById(Number.parseInt(params.id))
+        const collection = await collectionService.get(Number.parseInt(params.id))
         return {collection}
     }
 
@@ -30,7 +31,8 @@ export default class CollectionController implements CollectionApi {
         const page = Page.from(query)
         const filter = new Filter()
         filter.equals({chainId: query.chainId, name: query.name})
-        const collections = await collectionService.findAll(filter, page)
+        filter.paginate(page)
+        const collections = await collectionService.findAll(filter)
         return {
             collections,
             ...page.result(collections)
@@ -40,13 +42,19 @@ export default class CollectionController implements CollectionApi {
     async update(req: AuthBodyPathRequest<UpdateBodyRequest, UpdatePathRequest>): Promise<CollectionResponse> {
         const payload = req.body
         const params = req.params
-        const collection = await collectionService.update(Number.parseInt(params.id), payload)
+        const collection = await collectionService.update(Number.parseInt(params.id), payload.identifier, payload.address, payload.metadata)
         return {collection}
     }
 
     async metadataGet(req: PathRequest<MetadataGetRequest>): Promise<MetadataEthDto> {
         const params = req.params
-        const collection = await collectionService.get(params.chainId, params.collectionAddress)
+        const filter = eq({chainId: params.chainId})
+        if (params.collection.startsWith("0x")) {
+            filter.equals({collectionAddress: params.collection})
+        } else {
+            filter.equals({identifier: params.collection})
+        }
+        const collection = await collectionService.getBy(filter)
         return ContractMetadata.for(params.chainId, collection.metadata)
     }
 

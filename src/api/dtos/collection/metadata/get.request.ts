@@ -4,5 +4,5 @@ export default class GetRequest {
     @IsEnum(Blockchain)
     chainId: Blockchain
     @IsString()
-    collectionAddress: string
+    collection: string
 }

@@ -19,7 +19,7 @@ export default class ModelController implements ModelApi {
 
     async get(req: PathRequest<GetRequest>): Promise<ModelResponse> {
         const params = req.params
-        const model = await modelService.getById(Number.parseInt(params.id))
+        const model = await modelService.get(Number.parseInt(params.id))
         return {model}
     }
 
@@ -28,7 +28,8 @@ export default class ModelController implements ModelApi {
         const page = Page.from(query)
         const filter = new Filter()
         filter.equals({chainId: query.chainId, collectionAddress: query.collectionAddress})
-        const models = await modelService.findAll(filter, page)
+        filter.paginate(page)
+        const models = await modelService.findAll(filter)
         return {
             models,
             ...page.result(models)
@@ -38,7 +39,7 @@ export default class ModelController implements ModelApi {
     async update(req: AuthBodyPathRequest<UpdateBodyRequest, UpdatePathRequest>): Promise<ModelResponse> {
         const payload = req.body
         const params = req.params
-        const model = await modelService.update(Number.parseInt(params.id), payload)
+        const model = await modelService.update(Number.parseInt(params.id), payload.chainId, payload.collectionAddress, payload.metadata)
         return {model}
     }
 }
