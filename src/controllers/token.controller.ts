@@ -1,5 +1,5 @@
 import {TokenApi} from "../api"
-import {AuthBodyPathRequest, Filter, isNotNull, Page, PathRequest, QueryRequest, toOptDate} from "@d-lab/api-kit"
+import {AuthBodyPathRequest, Filter, isNotNull, logger, Page, PathRequest, QueryRequest, toOptDate} from "@d-lab/api-kit"
 import {GetRequest, ListRequest, TokenResponse, TokensResponse} from "../api/dtos/token"
 import {MetadataDto, MetadataEthDto, MetadataImxDto, UpdateBodyRequest, UpdatePathRequest} from "../api/dtos/token/metadata"
 import tokenService from "../services/token.service"

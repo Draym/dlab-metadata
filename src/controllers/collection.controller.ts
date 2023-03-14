@@ -40,7 +40,7 @@ export default class CollectionController implements CollectionApi {
     async update(req: AuthBodyPathRequest<UpdateBodyRequest, UpdatePathRequest>): Promise<CollectionResponse> {
         const payload = req.body
         const params = req.params
-        const collection = await collectionService.update(Number.parseInt(params.id), payload.metadata)
+        const collection = await collectionService.update(Number.parseInt(params.id), payload)
         return {collection}
     }
 

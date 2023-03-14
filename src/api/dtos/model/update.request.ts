@@ -1,9 +1,7 @@
-import {IsNumberString, IsObject} from "class-validator"
+import {IsNumberString} from "class-validator"
 import {PartialMetadataRequest} from "../token/metadata"
 
-export class UpdateBodyRequest {
-    @IsObject()
-    metadata: PartialMetadataRequest
+export class UpdateBodyRequest extends PartialMetadataRequest{
 }
 
 export class UpdatePathRequest {

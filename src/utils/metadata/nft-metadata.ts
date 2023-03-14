@@ -22,7 +22,7 @@ export default class NftMetadata {
             image: metadata.imageUrl,
             animation_url: metadata.animationUrl,
             external_url: metadata.externalUrl,
-            attributes: metadata.properties.keys().map(key => {
+            attributes: Object.keys(metadata.properties).map(key => {
                 const value = metadata.properties[key]
                 if (isDate(value)) {
                     return {

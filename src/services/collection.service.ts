@@ -1,6 +1,6 @@
 import {Filter, merge, Page, throwIfNull} from "@d-lab/api-kit"
 import db from "../db/database"
-import {Collection, MetadataContract, MetadataContractOpt} from "../interfaces"
+import {Collection, MetadataContract} from "../interfaces"
 import {CollectionModel} from "../models"
 import Errors from "../utils/errors/Errors"
 import {Blockchain} from "../enums"
@@ -16,7 +16,7 @@ class CollectionService {
         })
     }
 
-    async update(id: number, partialMetadata: MetadataContractOpt): Promise<CollectionModel> {
+    async update(id: number, partialMetadata: Partial<MetadataContract>): Promise<CollectionModel> {
         const collection = await this.getById(id)
         await collection.update({
             name: partialMetadata.name,

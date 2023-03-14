@@ -1,6 +1,6 @@
 import {Filter, isNull, merge, Page, throwIfNull, toInt} from "@d-lab/api-kit"
 import db from "../db/database"
-import {MetadataToken, MetadataTokenOpt, Token} from "../interfaces"
+import {MetadataToken, Token} from "../interfaces"
 import {TokenModel} from "../models"
 import {TokenId} from "../utils/decoder"
 import Errors from "../utils/errors/Errors"
@@ -22,7 +22,7 @@ class TokenService {
         })
     }
 
-    async updateMetadata(chainId: Blockchain, collectionAddress: string, tokenId: string, partialMetadata: MetadataTokenOpt): Promise<TokenModel> {
+    async updateMetadata(chainId: Blockchain, collectionAddress: string, tokenId: string, partialMetadata: Partial<MetadataToken>): Promise<TokenModel> {
         const token = await this.find(chainId, collectionAddress, tokenId)
 
         if (isNull(token)) {

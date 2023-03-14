@@ -1,6 +1,6 @@
 import {Filter, merge, Page, throwIfNull} from "@d-lab/api-kit"
 import db from "../db/database"
-import {MetadataToken, Model, MetadataTokenOpt} from "../interfaces"
+import {MetadataToken, Model} from "../interfaces"
 import {ModelModel} from "../models"
 import Errors from "../utils/errors/Errors"
 import {Blockchain} from "../enums"
@@ -16,7 +16,7 @@ class ModelService {
         })
     }
 
-    async update(id: number, partialMetadata: MetadataTokenOpt): Promise<ModelModel> {
+    async update(id: number, partialMetadata: Partial<MetadataToken>): Promise<ModelModel> {
         const model = await this.getById(id)
         const metadata = merge(model.metadata, partialMetadata)
         await model.update({

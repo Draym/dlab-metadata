@@ -38,7 +38,7 @@ export default class ModelController implements ModelApi {
     async update(req: AuthBodyPathRequest<UpdateBodyRequest, UpdatePathRequest>): Promise<ModelResponse> {
         const payload = req.body
         const params = req.params
-        const model = await modelService.update(Number.parseInt(params.id), payload.metadata)
+        const model = await modelService.update(Number.parseInt(params.id), payload)
         return {model}
     }
 }
