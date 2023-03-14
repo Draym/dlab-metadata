@@ -1,7 +1,7 @@
 import {RequestHandler} from "express"
 import {Errors, Role} from "@d-lab/sso"
 import sso from "../clients/sso.client"
-import {Auth, logger, throwIfNull} from "@d-lab/api-kit"
+import {Auth, throwIfNull} from "@d-lab/api-kit"
 
 export const hasRole = (role: Role, strict: boolean = false): RequestHandler => {
     return async (req, res, next) => {
@@ -21,7 +21,6 @@ export const hasRole = (role: Role, strict: boolean = false): RequestHandler => 
                 throw Errors.REQUIRE_Role(role)
             }
         } catch (error) {
-            logger.error(error)
             next(error)
         }
     }

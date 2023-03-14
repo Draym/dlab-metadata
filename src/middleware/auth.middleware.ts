@@ -1,6 +1,6 @@
 import {NextFunction, Request, RequestHandler, Response} from "express"
 import sso from "../clients/sso.client"
-import {AuthRawData, isNotNull, logger, throwIfNull} from "@d-lab/api-kit"
+import {AuthRawData, isNotNull, throwIfNull} from "@d-lab/api-kit"
 import {AuthMeResponse, Errors} from "@d-lab/sso"
 
 declare global {
@@ -40,7 +40,6 @@ export const authMiddleware = (): RequestHandler => {
             throwIfNull(req.auth, Errors.REQUIRE_Token())
             next()
         } catch (error) {
-            logger.error(error)
             next(error)
         }
     }
