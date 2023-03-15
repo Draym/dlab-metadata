@@ -33,7 +33,7 @@ export default class TokenSdk extends Sdk {
 
     updateMetadata(path: MetadataUpdatePathRequest, body: MetadataUpdateBodyRequest): Promise<MetadataDto> {
         return new Promise((resolve, reject) => {
-            Http.post(this.domain, Endpoint.TOKEN_METADATA_Update,
+            Http.put(this.domain, Endpoint.TOKEN_METADATA_Update,
                 Auth.apiKey(this.apiKey),
                 {path: {...path}, body: body},
                 (data: MetadataDto) => {
