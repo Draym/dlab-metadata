@@ -8,12 +8,10 @@ export const hasRole = (role: Role, strict: boolean = false): RequestHandler => 
         try {
             const auth = req.auth
 
-            throwIfNull(auth?.token, Errors.REQUIRE_Token())
-
             const isAllowed = await sso.application.isUserAllowed({
                 strict: strict ? "true" : "false",
                 requiredRole: role
-            }, Auth.token(auth!.token!))
+            }, Auth.extract({token: auth!.token, apiKey: auth!.apiKey}))
 
             if (isAllowed.allowed) {
                 next()
