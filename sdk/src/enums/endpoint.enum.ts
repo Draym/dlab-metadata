@@ -13,9 +13,9 @@ enum Endpoint {
 
     TOKEN_List = "/tokens",
     TOKEN_Get = "/tokens/:id",
-    TOKEN_METADATA_Update = "/metadata/:chainId/:collectionAddress/:tokenId",
-    TOKEN_METADATA_Get = "/metadata/:chainId/:collectionAddress/:tokenId",
-    COLLECTION_METADATA_Get = "/metadata/:chainId/:collectionAddress",
+    TOKEN_METADATA_Update = "/metadata/:chainId/:collection/:tokenId",
+    TOKEN_METADATA_Get = "/metadata/:chainId/:collection/:tokenId",
+    COLLECTION_METADATA_Get = "/metadata/:chainId/:collection",
 }
 
 export default Endpoint
