@@ -1,6 +1,6 @@
 {
   "name": "@d-lab/metadata",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Client library for DLab Metadata apis",
   "private": false,
   "keywords": [
