@@ -1,8 +1,9 @@
 import {RequestHandler} from "express"
-import {Errors, Role} from "@d-lab/sso"
+import {Role} from "@d-lab/sso"
 import sso from "../clients/sso.client"
 import {logger} from "@d-lab/api-kit"
 import {Auth, isNotNull} from "@d-lab/common-kit"
+import Errors from "../utils/errors/Errors"
 
 export const hasRole = (role: Role, strict = false): RequestHandler => {
     return async (req, res, next) => {

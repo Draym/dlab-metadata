@@ -1,7 +1,9 @@
 enum ErrorCode {
-    NOT_FOUND_Collection = 404101,
-    NOT_FOUND_Model = 404102,
-    NOT_FOUND_Token = 404103
+    NOT_FOUND_Collection = 404100,
+    NOT_FOUND_Model,
+    NOT_FOUND_Token,
+    REQUIRE_Token = 403400,
+    REQUIRE_Role,
 }
 
 export default ErrorCode
