@@ -50,7 +50,7 @@ export default class CollectionController implements CollectionApi {
         const params = req.params
         const filter = eq({chainId: params.chainId})
         if (params.collection.startsWith("0x")) {
-            filter.equals({identifier: params.collection})
+            filter.equals({address: params.collection})
         } else {
             filter.equals({identifier: params.collection})
         }
