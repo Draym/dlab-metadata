@@ -1,5 +1,5 @@
 import Sdk from "./sdk"
-import {Auth, Http} from "@d-lab/api-kit"
+import {Auth, Http} from "@d-lab/common-kit"
 import {
     GetRequest as MetadataGetRequest, MetadataDto,
     MetadataEthDto,

@@ -1,16 +1,8 @@
-import {IsObject, IsString} from "class-validator"
-
-export default class MetadataRequest {
-    @IsString()
+export default interface MetadataRequest {
     name: string
-    @IsString()
     description: string
-    @IsString()
     imageUrl: string
-    @IsString()
     animationUrl: string
-    @IsString()
     externalUrl: string
-    @IsObject()
     properties: { [key: string]: string | number | boolean | Date }
 }

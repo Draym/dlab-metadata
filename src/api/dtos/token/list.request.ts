@@ -1,21 +1,21 @@
-import {IsDateString, IsEnum, IsNumberString, IsString, ValidateIf} from "class-validator"
-import {isNotEmpty, PageRequest} from "@d-lab/api-kit"
+import {IsDateString, IsEnum, IsNumberString, IsString} from "class-validator"
+import {PageRequest, SkipNull} from "@d-lab/api-kit"
 import {Blockchain} from "../../../enums"
 
 export default class ListRequest extends PageRequest {
     @IsEnum(Blockchain)
-    @ValidateIf((object, value) => isNotEmpty(value))
+    @SkipNull()
     chainId: Blockchain | null
     @IsString()
-    @ValidateIf((object, value) => isNotEmpty(value))
+    @SkipNull()
     collectionAddress: string | null
     @IsNumberString()
-    @ValidateIf((object, value) => isNotEmpty(value))
+    @SkipNull()
     modelId: string | null
     @IsDateString()
-    @ValidateIf((object, value) => isNotEmpty(value))
+    @SkipNull()
     createdAfter: string | null
     @IsDateString()
-    @ValidateIf((object, value) => isNotEmpty(value))
+    @SkipNull()
     createdBefore: string | null
 }

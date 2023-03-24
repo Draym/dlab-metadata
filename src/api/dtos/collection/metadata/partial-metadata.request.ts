@@ -1,25 +1,25 @@
-import {IsNumber, IsString, Max, Min, ValidateIf} from "class-validator"
-import {isNotEmpty} from "@d-lab/api-kit"
+import {IsNumber, IsString, Max, Min} from "class-validator"
+import {SkipNull} from "@d-lab/api-kit"
 
 export default class PartialMetadataRequest {
     @IsString()
-    @ValidateIf((object, value) => isNotEmpty(value))
+    @SkipNull()
     name: string | undefined
     @IsString()
-    @ValidateIf((object, value) => isNotEmpty(value))
+    @SkipNull()
     description: string | undefined
     @IsString()
-    @ValidateIf((object, value) => isNotEmpty(value))
+    @SkipNull()
     imageUrl: string | undefined
     @IsString()
-    @ValidateIf((object, value) => isNotEmpty(value))
+    @SkipNull()
     externalUrl: string | undefined
     @Min(100)
     @Max(10000)
     @IsNumber()
-    @ValidateIf((object, value) => isNotEmpty(value))
+    @SkipNull()
     sellerFee: number | undefined
     @IsString()
-    @ValidateIf((object, value) => isNotEmpty(value))
+    @SkipNull()
     feeRecipient: string | undefined
 }

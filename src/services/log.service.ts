@@ -1,7 +1,8 @@
 import db from "../db/database"
 import {Log} from "../interfaces"
-import {Filter, nowUTC, Page} from "@d-lab/api-kit"
+import {Filter} from "@d-lab/api-kit"
 import {LogEvent, LogScope} from "../enums"
+import {nowUTC} from "@d-lab/common-kit"
 
 class LogService {
 

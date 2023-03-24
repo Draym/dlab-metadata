@@ -1,4 +1,4 @@
-import {PageResponse} from "@d-lab/api-kit"
+import {PageResponse} from "@d-lab/common-kit"
 import TokenDto from "./token.dto"
 
 export default interface TokensResponse extends PageResponse {

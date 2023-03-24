@@ -1,7 +1,8 @@
 import LogApi from "../api/log.api"
-import {Filter, Page, QueryRequest, toOptDate} from "@d-lab/api-kit"
+import {Filter, Page, QueryRequest} from "@d-lab/api-kit"
 import {ListRequest, LogsResponse} from "../api/dtos/log"
 import logService from "../services/log.service"
+import {toOptDate} from "@d-lab/common-kit"
 
 export default class LogController implements LogApi {
     async list(req: QueryRequest<ListRequest>): Promise<LogsResponse> {

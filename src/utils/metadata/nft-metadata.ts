@@ -1,6 +1,6 @@
 import {MetadataToken} from "../../interfaces"
 import Blockchain from "../../enums/blockchain.enum"
-import {isDate, isNotNull, isNumber} from "@d-lab/api-kit"
+import {isDate, isNotNull, isNumber} from "@d-lab/common-kit"
 import {MetadataEthDto, MetadataImxDto} from "../../api/dtos/token/metadata"
 export default class NftMetadata {
 

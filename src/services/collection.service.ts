@@ -1,9 +1,10 @@
-import {Filter, merge, throwIfNull} from "@d-lab/api-kit"
+import {Filter} from "@d-lab/api-kit"
 import db from "../db/database"
 import {Collection, MetadataContract} from "../interfaces"
 import {CollectionModel} from "../models"
 import Errors from "../utils/errors/Errors"
 import {Blockchain} from "../enums"
+import {merge, throwIfNull} from "@d-lab/common-kit"
 
 class CollectionService {
 

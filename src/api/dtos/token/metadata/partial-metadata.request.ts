@@ -1,23 +1,23 @@
-import {IsObject, IsString, ValidateIf} from "class-validator"
-import {isNotEmpty} from "@d-lab/api-kit"
+import {IsObject, IsString} from "class-validator"
+import {SkipNull} from "@d-lab/api-kit"
 
 export default class PartialMetadataRequest {
     @IsString()
-    @ValidateIf((object, value) => isNotEmpty(value))
+    @SkipNull()
     name: string | undefined
     @IsString()
-    @ValidateIf((object, value) => isNotEmpty(value))
+    @SkipNull()
     description: string | undefined
     @IsString()
-    @ValidateIf((object, value) => isNotEmpty(value))
+    @SkipNull()
     imageUrl: string | undefined
     @IsString()
-    @ValidateIf((object, value) => isNotEmpty(value))
+    @SkipNull()
     externalUrl: string | undefined
     @IsString()
-    @ValidateIf((object, value) => isNotEmpty(value))
+    @SkipNull()
     animationUrl: string | undefined
     @IsObject()
-    @ValidateIf((object, value) => isNotEmpty(value))
+    @SkipNull()
     properties: { [key: string]: string | number | boolean | Date | undefined } | undefined
 }

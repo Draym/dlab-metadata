@@ -1,7 +1,8 @@
 import {NextFunction, Request, RequestHandler, Response} from "express"
 import sso from "../clients/sso.client"
-import {AuthRawData, isNotNull, throwIfNull} from "@d-lab/api-kit"
+import {AuthRawData} from "@d-lab/api-kit"
 import {AuthMeResponse, Errors} from "@d-lab/sso"
+import {isNotNull, throwIfNull} from "@d-lab/common-kit"
 
 declare global {
     namespace Express {

@@ -1,24 +1,24 @@
 import {LogEvent, LogScope} from "../../../enums"
-import {IsDateString, IsEnum, IsString, ValidateIf} from "class-validator"
-import {isNotEmpty, PageRequest} from "@d-lab/api-kit"
+import {IsDateString, IsEnum, IsString} from "class-validator"
+import {PageRequest, SkipNull} from "@d-lab/api-kit"
 
 export default class ListRequest extends PageRequest {
     @IsEnum(LogScope)
-    @ValidateIf((object, value) => isNotEmpty(value))
+    @SkipNull()
     scope: LogScope | null
     @IsEnum(LogEvent)
-    @ValidateIf((object, value) => isNotEmpty(value))
+    @SkipNull()
     event: LogEvent | null
     @IsString()
-    @ValidateIf((object, value) => isNotEmpty(value))
+    @SkipNull()
     code: string | null
     @IsString()
-    @ValidateIf((object, value) => isNotEmpty(value))
+    @SkipNull()
     message: string | null
     @IsDateString()
-    @ValidateIf((object, value) => isNotEmpty(value))
+    @SkipNull()
     createdAfter: string | null
     @IsDateString()
-    @ValidateIf((object, value) => isNotEmpty(value))
+    @SkipNull()
     createdBefore: string | null
 }

@@ -1,5 +1,5 @@
 import {TokenApi} from "../api"
-import {AuthBodyPathRequest, eq, Filter, isNotNull, logger, Page, PathRequest, QueryRequest, toOptDate} from "@d-lab/api-kit"
+import {AuthBodyPathRequest, eq, Filter, Page, PathRequest, QueryRequest} from "@d-lab/api-kit"
 import {GetRequest, ListRequest, TokenResponse, TokensResponse} from "../api/dtos/token"
 import {MetadataDto, MetadataEthDto, MetadataImxDto, UpdateBodyRequest, UpdatePathRequest} from "../api/dtos/token/metadata"
 import tokenService from "../services/token.service"
@@ -8,6 +8,7 @@ import {TokenId} from "../utils/decoder"
 import NftMetadata from "../utils/metadata/nft-metadata"
 import collectionService from "../services/collection.service"
 import {col} from "sequelize"
+import {isNotNull, toOptDate} from "@d-lab/common-kit"
 
 export default class TokenController implements TokenApi {
     async get(req: PathRequest<GetRequest>): Promise<TokenResponse> {
