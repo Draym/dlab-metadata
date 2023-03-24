@@ -1,6 +1,6 @@
 {
   "name": "@d-lab/metadata",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "Client library for DLab Metadata apis",
   "private": false,
   "keywords": [
@@ -29,9 +29,6 @@
   },
   "dependencies": {
     "@d-lab/common-kit": "^0.7.0",
-    "class-transformer": "^0.5.1",
-    "class-validator": "^0.13.2",
-    "reflect-metadata": "^0.1.13",
     "tslib": "^2.4.0"
   }
 }
