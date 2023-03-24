@@ -28,4 +28,4 @@ routers.map(router => app.use('/api', router))
 
 app.use(errorMiddleware)
 
-module.exports = app
+export default app
