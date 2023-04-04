@@ -1,6 +1,6 @@
 {
   "name": "@d-lab/metadata",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "Client library for DLab Metadata apis",
   "private": false,
   "keywords": [
@@ -28,7 +28,7 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@d-lab/common-kit": "^0.7.0",
+    "@d-lab/common-kit": "^0.7.4",
     "tslib": "^2.4.0"
   }
 }
