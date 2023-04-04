@@ -4,20 +4,20 @@ import {SkipNull} from "@d-lab/api-kit"
 export default class PartialMetadataRequest {
     @IsString()
     @SkipNull()
-    name: string | undefined
+    name?: string
     @IsString()
     @SkipNull()
-    description: string | undefined
+    description?: string
     @IsString()
     @SkipNull()
-    imageUrl: string | undefined
+    imageUrl?: string
     @IsString()
     @SkipNull()
-    externalUrl: string | undefined
+    externalUrl?: string
     @IsString()
     @SkipNull()
-    animationUrl: string | undefined
+    animationUrl?: string
     @IsObject()
     @SkipNull()
-    properties: { [key: string]: string | number | boolean | Date | undefined } | undefined
+    properties?: { [key: string]: string | number | boolean | Date | undefined }
 }
