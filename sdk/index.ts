@@ -25,4 +25,4 @@ import * as Token from "./src/api/dtos/token"
 import * as TokenMetadata from "./src/api/dtos/token/metadata"
 import * as Model from "./src/api/dtos/model"
 import * as Collection from "./src/api/dtos/collection"
-export { Token, TokenMetadata, Model, Collection }
+export { Token, TokenMetadata, Model, Collection, TokenSdk, ModelSdk, CollectionSdk }
